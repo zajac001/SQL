@@ -27,77 +27,27 @@ mortality_before_sixty_2017 = pd.read_csv("mortality_before_sixty_2017.csv",
 mortality_before_sixty_2016 = pd.read_csv("mortality_before_sixty_2016.csv",
                                           delimiter= ";",engine="python", encoding="utf-8")
 
-salaries_2018.columns=["ID", "Region", "Salary_2018","unnamed"]
-salaries_2018.drop("unnamed", axis=1, inplace=True)
-salaries_2018["Salary_2018"] = salaries_2018["Salary_2018"].replace(',','.', regex=True)
-salaries_2018["Salary_2018"] = pd.to_numeric(salaries_2018["Salary_2018"], errors='coerce')
+for file in [salaries_2018, salaries_2017, salaries_2016,
+         unemployment_rate_2018, unemployment_rate_2017, unemployment_rate_2016,
+         divorces_2018, divorces_2017, divorces_2016,
+         mortality_before_sixty_2018, mortality_before_sixty_2017, mortality_before_sixty_2016]:
+    file.columns=["ID", "Region", "Value", "unnamed"]
+    file["Value"] = file["Value"].replace(',','.', regex=True)
+    file["Value"] = pd.to_numeric(file["Value"], errors='coerce')
+    file.drop("unnamed", axis=1, inplace=True)
 
-salaries_2017.columns=["ID", "Region", "Salary_2017","unnamed"]
-salaries_2017.drop("unnamed", axis=1, inplace=True)
-salaries_2017["Salary_2017"] = salaries_2017["Salary_2017"].replace(',','.', regex=True)
-salaries_2017["Salary_2017"] = pd.to_numeric(salaries_2017["Salary_2017"], errors='coerce')
-
-salaries_2016.columns=["ID", "Region", "Salary_2016","unnamed"]
-salaries_2016.drop("unnamed", axis=1, inplace=True)
-salaries_2016["Salary_2016"] = salaries_2016["Salary_2016"].replace(',','.', regex=True)
-salaries_2016["Salary_2016"] = pd.to_numeric(salaries_2016["Salary_2016"], errors='coerce')
-
-unemployment_rate_2018.columns=["ID", "Region", "Unemployment_rate_2018","unnamed"]
-unemployment_rate_2018.drop("unnamed", axis=1, inplace=True)
-unemployment_rate_2018["Unemployment_rate_2018"] = unemployment_rate_2018\
-    ["Unemployment_rate_2018"].replace(',','.', regex=True)
-unemployment_rate_2018["Unemployment_rate_2018"] = pd.to_numeric\
-    (unemployment_rate_2018["Unemployment_rate_2018"], errors='coerce')
-
-unemployment_rate_2017.columns=["ID", "Region", "Unemployment_rate_2017","unnamed"]
-unemployment_rate_2017.drop("unnamed", axis=1, inplace=True)
-unemployment_rate_2017["Unemployment_rate_2017"] = unemployment_rate_2017\
-    ["Unemployment_rate_2017"].replace(',','.', regex=True)
-unemployment_rate_2017["Unemployment_rate_2017"] = pd.to_numeric\
-    (unemployment_rate_2017["Unemployment_rate_2017"], errors='coerce')
-
-unemployment_rate_2016.columns=["ID", "Region", "Unemployment_rate_2016","unnamed"]
-unemployment_rate_2016.drop("unnamed", axis=1, inplace=True)
-unemployment_rate_2016["Unemployment_rate_2016"] = unemployment_rate_2016\
-    ["Unemployment_rate_2016"].replace(',','.', regex=True)
-unemployment_rate_2016["Unemployment_rate_2016"] = pd.to_numeric\
-    (unemployment_rate_2016["Unemployment_rate_2016"], errors='coerce')
-
-divorces_2018.columns=["ID", "Region", "Divorces_2018","unnamed"]
-divorces_2018.drop("unnamed", axis=1, inplace=True)
-divorces_2018["Divorces_2018"] = divorces_2018["Divorces_2018"].replace(',','.', regex=True)
-divorces_2018["Divorces_2018"] = pd.to_numeric(divorces_2018["Divorces_2018"], errors='coerce')
-
-divorces_2017.columns=["ID", "Region", "Divorces_2017","unnamed"]
-divorces_2017.drop("unnamed", axis=1, inplace=True)
-divorces_2017["Divorces_2017"] = divorces_2017["Divorces_2017"].replace(',','.', regex=True)
-divorces_2017["Divorces_2017"] = pd.to_numeric(divorces_2017["Divorces_2017"], errors='coerce')
-
-divorces_2016.columns=["ID", "Region", "Divorces_2016","unnamed"]
-divorces_2016.drop("unnamed", axis=1, inplace=True)
-divorces_2016["Divorces_2016"] = divorces_2016["Divorces_2016"].replace(',','.', regex=True)
-divorces_2016["Divorces_2016"] = pd.to_numeric(divorces_2016["Divorces_2016"], errors='coerce')
-
-mortality_before_sixty_2018.columns=["ID", "Region", "Mortality_before_sixty_2018","unnamed"]
-mortality_before_sixty_2018.drop("unnamed", axis=1, inplace=True)
-mortality_before_sixty_2018["Mortality_before_sixty_2018"] = mortality_before_sixty_2018\
-    ["Mortality_before_sixty_2018"].replace(',','.', regex=True)
-mortality_before_sixty_2018["Mortality_before_sixty_2018"] = pd.to_numeric\
-    (mortality_before_sixty_2018["Mortality_before_sixty_2018"], errors='coerce')
-
-mortality_before_sixty_2017.columns=["ID", "Region", "Mortality_before_sixty_2017","unnamed"]
-mortality_before_sixty_2017.drop("unnamed", axis=1, inplace=True)
-mortality_before_sixty_2017["Mortality_before_sixty_2017"] = mortality_before_sixty_2017\
-    ["Mortality_before_sixty_2017"].replace(',','.', regex=True)
-mortality_before_sixty_2017["Mortality_before_sixty_2017"] = pd.to_numeric\
-    (mortality_before_sixty_2017["Mortality_before_sixty_2017"], errors='coerce')
-
-mortality_before_sixty_2016.columns=["ID", "Region", "Mortality_before_sixty_2016","unnamed"]
-mortality_before_sixty_2016.drop("unnamed", axis=1, inplace=True)
-mortality_before_sixty_2016["Mortality_before_sixty_2016"] = mortality_before_sixty_2016\
-    ["Mortality_before_sixty_2016"].replace(',','.', regex=True)
-mortality_before_sixty_2016["Mortality_before_sixty_2016"] = pd.to_numeric\
-    (mortality_before_sixty_2016["Mortality_before_sixty_2016"], errors='coerce')
+salaries_2018.columns.values[2] = "Salary_2018"
+salaries_2017.columns.values[2] = "Salary_2017"
+salaries_2016.columns.values[2] = "Salary_2016"
+unemployment_rate_2018.columns.values[2] = "Unemployment_rate_2018"
+unemployment_rate_2017.columns.values[2] = "Unemployment_rate_2017"
+unemployment_rate_2016.columns.values[2] = "Unemployment_rate_2016"
+divorces_2018.columns.values[2] = "Divorces_2018"
+divorces_2017.columns.values[2] = "Divorces_2017"
+divorces_2016.columns.values[2] = "Divorces_2016"
+mortality_before_sixty_2018.columns.values[2] = "Mortality_before_sixty_2018"
+mortality_before_sixty_2017.columns.values[2] = "Mortality_before_sixty_2017"
+mortality_before_sixty_2016.columns.values[2] = "Mortality_before_sixty_2016"
 
 db_name = 'best_county_all.db'
 con = sqlite3.connect(os.path.join(os.getcwd(), db_name))
